@@ -15,6 +15,8 @@
 </head>
 <body>
   <!--Start nav bar-->
+  <form method="GET">
+  </form>
   <nav class = "navbar">
   <div class = "container-fluid">
   <div class = "navbar-header">
@@ -48,7 +50,7 @@
       <td colspan="2" style="font-weight:bold;">Available Servlets:</td>
     </tr>
     <tr>
-      <td><a href='/hello'>Hello Its duniel</a></td>
+      <td><a href='/hello'> <mark>Hello Its duniel</mark> </a></td>
     </tr>
   </table>
 
@@ -61,6 +63,12 @@
       <button type="submit"> Save </button>
     </form>
   </div>
-  
+
+  <% String fromGet = (String) request.getAttribute("outPut"); %>
+  <div class="container-fluid bg-3 text-center">    
+  <div class="container text-center">
+    <p> <%=fromGet%> </p>
+  </div>
+  </div><br>
 </body>
 </html>
