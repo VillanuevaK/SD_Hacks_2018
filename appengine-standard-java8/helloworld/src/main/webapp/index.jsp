@@ -6,6 +6,24 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
 <head>
+        <style>
+.button {
+  background-color: #f4511e;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button:hover {opacity: 1}
+</style>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="styleSheet1.css">
   <meta charset = "utf-8">
@@ -15,8 +33,6 @@
 </head>
 <body>
   <!--Start nav bar-->
-  <form method="GET">
-  </form>
   <nav class = "navbar">
   <div class = "container-fluid">
   <div class = "navbar-header">
@@ -25,7 +41,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>                        
     </button>
-    <a class="navbar-brand" href="index.jsp">SD HACKS 2018</a>
+    <a class="navbar-brand" href="https://www.sdhacks.io/">SD HACKS 2018</a>
   </div>
   <div class="collapse navbar-collapse" id="myNavbar">
     <ul class="nav navbar-nav">
@@ -45,13 +61,12 @@
     </div>
   </div><br>
   
+  <p>This is <%= HelloAppEngine.getInfo() %>.</p>
   <table>
     <tr>
       <td colspan="2" style="font-weight:bold;">Available Servlets:</td>
     </tr>
-    <tr>
-      <td><a href='/hello'> <mark>Hello Its duniel</mark> </a></td>
-    </tr>
+
   </table>
 
   <div class= "container">
@@ -60,15 +75,10 @@
         <label for = "description"> Enter some nums </label>
         <textarea name="description" id="description" rows="10" cols="50" class="form-control"> ${fn:escapeXml(blog.content)} </textarea>
       </div>
-      <button type="submit"> Save </button>
+
+      <button type="submit" class="button"> Save </button>
     </form>
   </div>
-
-  <% String fromGet = (String) request.getAttribute("outPut"); %>
-  <div class="container-fluid bg-3 text-center">    
-  <div class="container text-center">
-    <p> <%=fromGet%> </p>
-  </div>
-  </div><br>
+  
 </body>
 </html>
