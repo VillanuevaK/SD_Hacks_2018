@@ -17,6 +17,8 @@
 package com.example.appengine.java8;
 
 // [START example]
+import java.util.*;
+
 import com.google.appengine.api.utils.SystemProperty;
 
 import java.io.IOException;
@@ -47,28 +49,36 @@ public class HelloAppEngine extends HttpServlet {
 
   DatastoreService datastore;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws IOException {
-
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+System.out.println("fdsiojf;sdljf");
+System.out.println("fdsiojf;sdljf");
+System.out.println("fdsiojf;sdljf");
         final Query fromCloud = new Query("D");
         PreparedQuery grilledCloud = datastore.prepare(fromCloud);
-        List<Entity> posts = grilledCloud.asList(FetchOptions.Builder.withLimit(1));
+        List<Entity> posts = grilledCloud.asList(FetchOptions.Builder.withLimit(5));
 
-
+      System.out.println("soze "+posts.size());
         posts.forEach(
           (result) -> {
+            System.out.println("fdsiojf;sdljf");System.out.println("fdsiojf;sdljf");System.out.println("fdsiojf;sdljf");System.out.println("fdsiojf;sdljf");
         // Grab the key and convert it into a string in preparation for encoding
         String keyString = KeyFactory.keyToString(result.getKey());
         // Encode the entity's key with Base64
-        String encodedID = new String(Base64.getUrlEncoder().encodeToString(String.valueOf(keyString).getBytes()));
+        // String encodedID = new String(Base64.getUrlEncoder().encodeToString(String.valueOf(keyString).getBytes()));
 
         // Build up string with values from the Datastore entity
-        String recordOutput = String.format(result.getProperty("desc"));
-
-        public static String getDesc() {
-          return recordOutput;
+        String recordOutput;
+        if(result.getProperty("D") == null) {
+          recordOutput = "NULL!!";
         }
+
+        else {
+          recordOutput = String.format((String)result.getProperty("desc"));
+        }
+        System.out.println(recordOutput + "fdsiojf;sdljf");
+        request.setAttribute("outPut", recordOutput);
     });
 
   }
@@ -77,6 +87,7 @@ public class HelloAppEngine extends HttpServlet {
   public void doPost(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
         // PrintWriter out = req.getWriter();
+        // System.out.println("called");
         String desc = req.getParameter("description");
         Entity post = new Entity("D");
         post.setProperty("desc", desc);
