@@ -27,7 +27,7 @@ limitations under the License.
 
   <!-- [START_EXCLUDE] -->
   <parent>                              <!-- Get parameters and allow bulk testing -->
-    <artifactId>getting-started-java</artifactId>
+    <artifactId>SD_Hacks_2018</artifactId>
     <groupId>com.example</groupId>
     <version>1.0.0</version>
     <relativePath>../..</relativePath>

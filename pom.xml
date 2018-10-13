@@ -17,7 +17,7 @@ limitations under the License.
     <modelVersion>4.0.0</modelVersion>
     <version>1.0.0</version>
     <groupId>com.example</groupId>
-    <artifactId>getting-started-java</artifactId>
+    <artifactId>SD_Hacks_2018</artifactId>
     <packaging>pom</packaging>
 
     <!-- Parent POM defines common plugins and properties. -->
