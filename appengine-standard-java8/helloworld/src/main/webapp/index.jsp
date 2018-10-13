@@ -11,6 +11,7 @@
   <meta charset = "utf-8">
   <meta name = "viewport" content = "width = device-width, initial - scale = 1">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <title>SD_HACKS</title>
 </head>
 <body>
@@ -63,6 +64,24 @@
       <button type="submit"> Save </button>
     </form>
   </div>
+
+  <div id="fileupload">
+  <form method="post" enctype="multipart/form-data">
+    <div class="fileupload-buttonbar">
+     <label class="fileinput-button">
+      <span>Upload</span>
+      <input type="file" name="files[]" multiple>
+     </label>
+    </div>
+  </form>
+  <div class="fileupload-content">
+    <table class="files"></table>
+  </div>
+</div>
+
+<script id="template-upload" type="text/x-jquery-tmpl">
+...<!-- report all the templates from the jQuery Upload Sample code (link above) -->...
+</script>
 
   <% String fromGet = (String) request.getAttribute("outPut"); %>
   <div class="container-fluid bg-3 text-center">    
