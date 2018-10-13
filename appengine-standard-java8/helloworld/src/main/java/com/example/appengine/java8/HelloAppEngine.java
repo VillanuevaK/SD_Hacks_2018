@@ -21,32 +21,84 @@ import com.google.appengine.api.utils.SystemProperty;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Properties;
-
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.appengine.api.datastore.DatastoreFailureException;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
+
+
+
 // With @WebServlet annotation the webapp/WEB-INF/web.xml is no longer required.
 @WebServlet(name = "HelloAppEngine", value = "/hello")
+@SuppressWarnings("serial")
 public class HelloAppEngine extends HttpServlet {
+
+  DatastoreService datastore;
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
-    Properties properties = System.getProperties();
 
-    response.setContentType("text/plain");
-    response.getWriter().println("Hello App Engine - Standard using "
-            + SystemProperty.version.get() + " Java "
-            + properties.get("java.specification.version"));
+        final Query fromCloud = new Query("D");
+        PreparedQuery grilledCloud = datastore.prepare(fromCloud);
+        List<Entity> posts = grilledCloud.asList(FetchOptions.Builder.withLimit(1));
+
+
+        posts.forEach(
+          (result) -> {
+        // Grab the key and convert it into a string in preparation for encoding
+        String keyString = KeyFactory.keyToString(result.getKey());
+        // Encode the entity's key with Base64
+        String encodedID = new String(Base64.getUrlEncoder().encodeToString(String.valueOf(keyString).getBytes()));
+
+        // Build up string with values from the Datastore entity
+        String recordOutput = String.format(result.getProperty("desc"));
+
+        public static String getDesc() {
+          return recordOutput;
+        }
+    });
+
   }
 
-  public static String getInfo() {
-    return "Version: " + System.getProperty("java.version")
-          + " OS: " + System.getProperty("os.name")
-          + " User: " + System.getProperty("user.name");
+  @Override
+  public void doPost(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
+        // PrintWriter out = req.getWriter();
+        String desc = req.getParameter("description");
+        Entity post = new Entity("D");
+        post.setProperty("desc", desc);
+
+        try {
+          datastore.put(post);
+        } catch (DatastoreFailureException e) {
+          throw new ServletException("Datastore fail", e);
+        }
   }
+
+  @Override
+public void init() throws ServletException {
+
+  datastore = DatastoreServiceFactory.getDatastoreService();
+
+
 
 }
+
+
+
+
+}
+      
