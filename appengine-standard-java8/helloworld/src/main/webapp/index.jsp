@@ -43,7 +43,6 @@
     </div>
   </div><br>
   
-  <p>This is <%= HelloAppEngine.getInfo() %>.</p>
   <table>
     <tr>
       <td colspan="2" style="font-weight:bold;">Available Servlets:</td>
