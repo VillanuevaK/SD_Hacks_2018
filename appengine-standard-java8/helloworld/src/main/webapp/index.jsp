@@ -18,6 +18,8 @@
 <!-- [END_EXCLUDE] -->
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.example.appengine.java8.HelloAppEngine" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
 <head>
   <link href='//fonts.googleapis.com/css?family=Marmelad' rel='stylesheet' type='text/css'>
@@ -32,9 +34,20 @@
       <td colspan="2" style="font-weight:bold;">Available Servlets:</td>
     </tr>
     <tr>
-      <td><a href='/hello'>Hello App Engine</a></td>
+      <td><a href='/hello'>Hello Its duniel</a></td>
     </tr>
   </table>
+
+  <div class= "container">
+    <form method="POST" action="\create">
+      <div>
+        <label for = "description"> Enter some nums </label>
+        <textarea name="description" id="description" rows="10" cols="50" class="form-control"> ${fn:escapeXml(blog.content)} </textarea>
+      </div>
+      <button type="submit"> Save </button>
+    </form>
+  </div>
+  
 
 </body>
 </html>
