@@ -70,7 +70,7 @@ System.out.println("fdsiojf;sdljf");
 
         // Build up string with values from the Datastore entity
         String recordOutput;
-        if(result.getProperty("D") == null) {
+        if(result.getProperty("desc") == null) {
           recordOutput = "NULL!!";
         }
 
@@ -80,6 +80,7 @@ System.out.println("fdsiojf;sdljf");
         System.out.println(recordOutput + "fdsiojf;sdljf");
         request.setAttribute("outPut", recordOutput);
     });
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
 
   }
 
@@ -97,6 +98,8 @@ System.out.println("fdsiojf;sdljf");
         } catch (DatastoreFailureException e) {
           throw new ServletException("Datastore fail", e);
         }
+        // redirect to a GET request
+	    resp.sendRedirect("/hello");
   }
 
   @Override
