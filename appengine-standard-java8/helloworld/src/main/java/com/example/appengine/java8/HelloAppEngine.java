@@ -59,7 +59,7 @@ System.out.println("fdsiojf;sdljf");
         PreparedQuery grilledCloud = datastore.prepare(fromCloud);
         List<Entity> posts = grilledCloud.asList(FetchOptions.Builder.withLimit(5));
 
-      System.out.println("soze "+posts.size());
+      System.out.println("soze "+ posts.size());
         posts.forEach(
           (result) -> {
             System.out.println("fdsiojf;sdljf");System.out.println("fdsiojf;sdljf");System.out.println("fdsiojf;sdljf");System.out.println("fdsiojf;sdljf");
