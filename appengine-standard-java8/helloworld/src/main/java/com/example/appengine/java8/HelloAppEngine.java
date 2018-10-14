@@ -52,12 +52,15 @@ public class HelloAppEngine extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
+
         final Query fromCloud = new Query("D");
         PreparedQuery grilledCloud = datastore.prepare(fromCloud);
         List<Entity> posts = grilledCloud.asList(FetchOptions.Builder.withLimit(5));
 
-      System.out.println("soze "+posts.size());
+
+        System.out.println("soze "+ posts.size());
         String recordOutput = "";
+
         posts.forEach(
           (result) -> {
         // Grab the key and convert it into a string in preparation for encoding
