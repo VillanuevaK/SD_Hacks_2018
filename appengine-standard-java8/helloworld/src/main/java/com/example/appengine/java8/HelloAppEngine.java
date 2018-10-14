@@ -52,9 +52,9 @@ public class HelloAppEngine extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-System.out.println("fdsiojf;sdljf");
-System.out.println("fdsiojf;sdljf");
-System.out.println("fdsiojf;sdljf");
+        System.out.println("fdsiojf;sdljf");
+        System.out.println("fdsiojf;sdljf");
+        System.out.println("fdsiojf;sdljf");
         final Query fromCloud = new Query("D");
         PreparedQuery grilledCloud = datastore.prepare(fromCloud);
         List<Entity> posts = grilledCloud.asList(FetchOptions.Builder.withLimit(5));
@@ -62,7 +62,6 @@ System.out.println("fdsiojf;sdljf");
       System.out.println("soze "+ posts.size());
         posts.forEach(
           (result) -> {
-            System.out.println("fdsiojf;sdljf");System.out.println("fdsiojf;sdljf");System.out.println("fdsiojf;sdljf");System.out.println("fdsiojf;sdljf");
         // Grab the key and convert it into a string in preparation for encoding
         String keyString = KeyFactory.keyToString(result.getKey());
         // Encode the entity's key with Base64
