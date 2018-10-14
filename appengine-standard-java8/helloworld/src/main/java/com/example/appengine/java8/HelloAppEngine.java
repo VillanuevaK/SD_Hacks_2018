@@ -16,7 +16,6 @@
 
 package com.example.appengine.java8;
 
-// [START example]
 import java.util.*;
 
 import com.google.appengine.api.utils.SystemProperty;
@@ -57,28 +56,21 @@ public class HelloAppEngine extends HttpServlet {
         PreparedQuery grilledCloud = datastore.prepare(fromCloud);
         List<Entity> posts = grilledCloud.asList(FetchOptions.Builder.withLimit(5));
 
+        String description = "";
+        ArrayList<String> recordOutput = new ArrayList<String>();
 
-        System.out.println("soze "+ posts.size());
-        String recordOutput = "";
+	    for(Entity result : posts) {
+	        // Grab the key and convert it into a string in preparation for encoding
+	        String keyString = KeyFactory.keyToString(result.getKey());
+	        // Encode the entity's key with Base64
+	        // String encodedID = new String(Base64.getUrlEncoder().encodeToString(String.valueOf(keyString).getBytes()));
 
-        posts.forEach(
-          (result) -> {
-        // Grab the key and convert it into a string in preparation for encoding
-        String keyString = KeyFactory.keyToString(result.getKey());
-        // Encode the entity's key with Base64
-        // String encodedID = new String(Base64.getUrlEncoder().encodeToString(String.valueOf(keyString).getBytes()));
+	        // Build up string with values from the Datastore entity
+	        description = (String)result.getProperty("desc");
+	        recordOutput.add(description);
 
-        // Build up string with values from the Datastore entity
-        // String recordOutput;
-        // if(result.getProperty("desc") == null) {
-        //   recordOutput = "NULL!!";
-        // }
-        // else {
-          // recordOutput += String.format((String)result.getProperty("desc")) + " ";
-        // }
-
+	    }
         request.setAttribute("outPut", recordOutput);
-    });
         request.getRequestDispatcher("/index.jsp").forward(request, response);
 
   }

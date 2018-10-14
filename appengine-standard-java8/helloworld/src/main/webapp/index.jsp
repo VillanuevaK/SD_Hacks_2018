@@ -2,6 +2,7 @@
 <html lang="en">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.example.appengine.java8.HelloAppEngine" %>
+<%@ page import="java.util.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
@@ -74,9 +75,13 @@
 </script>
 <!--End file upload widget--> 
 
-  <% String fromGet = (String) request.getAttribute("outPut"); %>
+  <% ArrayList<String> listOfSavedDescriptions = (ArrayList<String>) request.getAttribute("outPut"); %>
   <div class="container-fluid bg-3 text-center">    
-    <p> Some info: <%=fromGet%> </p>
+    <p> Some info: 
+      <%for(String result : listOfSavedDescriptions) {%> 
+        <%=result%>
+      <%}%> 
+    </p>
   </div><br>
   
 </body>
