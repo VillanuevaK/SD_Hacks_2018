@@ -6,24 +6,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
 <head>
-        <style>
-.button {
-  background-color: #f4511e;
-  border: none;
-  color: white;
-  padding: 16px 32px;
-  text-align: center;
-  font-size: 16px;
-  margin: 4px 2px;
-  opacity: 0.6;
-  transition: 0.3s;
-  display: inline-block;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.button:hover {opacity: 1}
-</style>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="styleSheet1.css">
   <meta charset = "utf-8">
@@ -55,23 +37,26 @@
     </div>
     </nav>
   <!--End Nav Bar-->
+
   <div class="container-fluid bg-3 text-center">    
     <div class="container text-center">
       <h1>Welcome to this work in progress</h1>
-      <h2><code>Made by Hirish, Danny, and Kevin</code></h2>
+      <h2><code>Made by Danny, and Kevin</code></h2>
     </div>
   </div><br>
   
-
-
-  <div class= "container">
+  <div class="container-fluid bg-3 text-center">
     <form method="POST" action="\hello">
       <div>
         <label for = "description"> Enter some nums </label>
         <textarea name="description" id="description" rows="10" cols="50" class="form-control"> ${fn:escapeXml(blog.content)} </textarea>
       </div>
+      <button type="submit" class="button"> Save </button>
+    </form>
+  </div>
 
-  <div id="fileupload">
+  <!--File upload widget-->   
+  <div id="fileupload" class="container-fluid bg-3 text-center">
   <form method="post" enctype="multipart/form-data">
     <div class="fileupload-buttonbar">
      <label class="fileinput-button">
@@ -81,21 +66,18 @@
     </div>
   </form>
   <div class="fileupload-content">
-    <table class="files"></table>
+      <table class="files"></table>
   </div>
-</div>
+  </div>
 
 <script id="template-upload" type="text/x-jquery-tmpl">
 </script>
+<!--End file upload widget--> 
 
   <% String fromGet = (String) request.getAttribute("outPut"); %>
   <div class="container-fluid bg-3 text-center">    
-  <div class="container text-center">
-    <p> <%=fromGet%> </p>
-
-      <button type="submit" class="button"> Save </button>
-    </form>
-  </div>
+    <p> Some info: <%=fromGet%> </p>
+  </div><br>
   
 </body>
 </html>
