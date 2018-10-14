@@ -46,6 +46,11 @@ limitations under the License.
 <!-- [END properties] -->
 
   <dependencies>
+    <dependency>
+      <groupId>com.google.cloud</groupId>
+      <artifactId>google-cloud-vision</artifactId>
+      <version>1.48.0</version>
+    </dependency>
     <!-- Compile/runtime dependencies -->
     <!-- App Engine SDK dependency : only required if you need to explicitly use App Engine API -->
     <dependency>

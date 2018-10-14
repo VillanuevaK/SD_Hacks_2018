@@ -35,6 +35,7 @@ apply plugin: 'war'                               // standard Web Archive plugin
 apply plugin: 'com.google.cloud.tools.appengine'  // App Engine tasks
 
 dependencies {
+  compile 'com.google.cloud:google-cloud-vision:1.48.0' 
   compile 'com.google.appengine:appengine-api-1.0-sdk:+'  // Latest App Engine Api's
   providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
 
