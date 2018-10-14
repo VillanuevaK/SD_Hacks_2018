@@ -48,7 +48,7 @@
   <div class="container-fluid bg-3 text-center">
     <form method="POST" action="\hello">
       <div>
-        <label for = "description"> Enter some nums </label>
+        
         <textarea name="description" id="description" rows="10" cols="50" class="form-control"> ${fn:escapeXml(blog.content)} </textarea>
       </div>
       <button type="submit" class="button"> Save </button>
